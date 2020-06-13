@@ -71,11 +71,13 @@ export class LoginComponent implements OnInit {
   }
 
   navigateToRegister(){
+    this.isError = false;
     this.login = false;
     return false;
   }
 
   navigateToLogin(){
+    this.isError = false;
     this.login = true;
     return false;
   }
