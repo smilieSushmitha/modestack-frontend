@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../_services/user.service';
+import {AuthService} from '../_services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +15,13 @@ export class LoginComponent implements OnInit {
   login: boolean;
   isError: boolean;
   errObj: any;
-  constructor(private userService: UserService,
+  constructor(private authService: AuthService,
+              private userService: UserService,
               private router: Router) {
+    // redirect to home if already logged in
+    if (this.authService.currentUserValue) {
+      this.router.navigate(['articles']);
+    }
     this.loginForm = new FormGroup({
       email: new FormControl('',
         [Validators.required,
@@ -35,11 +41,9 @@ export class LoginComponent implements OnInit {
   }
 
   Login() {
-    this.router.navigate(['articles']);
-  }
-  Register() {
     this.isError = false;
-    this.userService.addUser(this.registerForm.value)
+    const {email, password} = this.loginForm.value;
+    this.authService.login(email, password)
       .subscribe((res) => {
         console.log(res);
         // Navigate only on success login
@@ -50,10 +54,27 @@ export class LoginComponent implements OnInit {
         console.error(err);
       });
   }
+
+  Register() {
+    this.isError = false;
+    const {email, password} = this.registerForm.value;
+    this.authService.register(email, password)
+      .subscribe((res) => {
+        console.log(res);
+        // Navigate only on success login
+        this.router.navigate(['articles']);
+      }, err => {
+        this.isError = true;
+        this.errObj = err.error;
+        console.error(err);
+      });
+  }
+
   navigateToRegister(){
     this.login = false;
     return false;
   }
+
   navigateToLogin(){
     this.login = true;
     return false;

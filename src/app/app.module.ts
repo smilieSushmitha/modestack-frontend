@@ -8,8 +8,9 @@ import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { MaterialModule } from './material/material.module';
 import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AddArticleComponent } from './add-article/add-article.component';
+import {JwtInterceptor} from './_helpers/jwt.interceptor';
 
 
 @NgModule({
@@ -27,7 +28,9 @@ import { AddArticleComponent } from './add-article/add-article.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
