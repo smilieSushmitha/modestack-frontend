@@ -1,0 +1,23 @@
+<img  src="../assets/ico_close.svg" class="close" (click)="close()"/>
+<div>
+  <h1 style="font-weight: lighter;" > Add Article </h1>
+  <form [formGroup]="addArticleForm">
+    <mat-form-field appearance="outline" class="example-full-width" >
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" placeholder="Modestack">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="example-full-width"  >
+      <mat-label>Body</mat-label>
+      <textarea rows="15" matInput formControlName="body" placeholder=""></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="example-full-width" >
+      <mat-label>Author</mat-label>
+      <input matInput formControlName="author" placeholder="Abhishek">
+    </mat-form-field>
+    <button mat-flat-button class="example-full-width addArticle" color="primary" [disabled]="!addArticleForm.valid" (click)="addArticle()" >
+     ADD ARTICLE
+    </button>
+  </form>
+</div>

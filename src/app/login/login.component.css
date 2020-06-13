@@ -1,0 +1,26 @@
+.main-div{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.example-full-width {
+  width: 100%;
+}
+.error {
+  color: red;
+}
+.error-msg {
+  display: block;
+  position: absolute;
+  font-size: 75%;
+  bottom: -2em;
+}
+.error-panel {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: rgba(255, 0, 0, 0.35);
+  color: red;
+  border: 1px solid red;
+}

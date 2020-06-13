@@ -1,0 +1,13 @@
+.example-full-width {
+  width: 100%;
+}
+.close{
+  position: absolute;
+  right: 15%;
+}
+.addArticle{
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-size: 20px;
+  font-weight: lighter;
+}

@@ -1,0 +1,54 @@
+<div class="main-div">
+  <mat-card>
+    <form [formGroup]="loginForm" *ngIf="login">
+      <mat-form-field appearance="outline" class="example-full-width" >
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" placeholder="test@gmail.com">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="example-full-width" >
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" placeholder="password">
+      </mat-form-field>
+
+      <button mat-flat-button color="primary" (click)="Login()" [disabled]="!loginForm.valid">
+        Login
+      </button>
+      <br>
+      <br>
+
+      <!-- Error Panel-->
+      <div class="error" *ngIf="isError">
+        <p>{{errObj.message}}</p>
+      </div>
+
+      <a href="" (click)="navigateToRegister()" id="register" >If you are a new user click here to register</a>
+    </form>
+    <form [formGroup]="registerForm" *ngIf="!login" >
+      <mat-form-field appearance="outline" class="example-full-width" >
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="test@gmail.com">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="example-full-width" >
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" placeholder="password">
+      </mat-form-field>
+
+      <button mat-flat-button color="primary" (click)="Register()" [disabled]="!registerForm.valid">
+        Register
+      </button>
+      <br>
+      <br>
+
+      <!-- Error Panel-->
+      <div class="error" *ngIf="isError">
+        <p>{{errObj.message}}</p>
+      </div>
+
+      <a href="" id="login"  (click)="navigateToLogin()" >Already have an accout click here to login.</a>
+    </form>
+  </mat-card>
+</div>
+
+

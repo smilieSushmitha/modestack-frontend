@@ -1,0 +1,24 @@
+<div>
+  <mat-grid-list *ngIf="!isLoading" cols="3" rowHeight="2:1" [gutterSize]="'10px'" style="background: #F8F9F9  ">
+    <mat-grid-tile *ngFor="let article of articles">
+    <mat-card>
+      <!--Title-->
+      <mat-card-title>
+        <h2>{{ article.title }}</h2>
+      </mat-card-title>
+      <mat-card-content [style.overflow]="'auto'" [style.height.px]="'100'">
+        <p>{{article.body}}</p>
+      </mat-card-content>
+      <mat-card-footer style="text-align: right">
+        <p>-{{article.author}}</p>
+      </mat-card-footer>
+    </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <div id="addButton">
+    <button mat-fab color="primary" (click)="addArticle()"><mat-icon>add</mat-icon></button>
+  </div>
+</div>
+
+
